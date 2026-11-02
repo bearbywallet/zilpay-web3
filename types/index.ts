@@ -3,7 +3,7 @@ declare global {
     ZilPayLegacy?: {
       postMessage: (msg: string) => void;
     };
-    flutter_inappwebview?: {
+    webview_plus?: {
       callHandler: (handlerName: string, ...args: any[]) => Promise<any>;
     };
   }

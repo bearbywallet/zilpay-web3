@@ -1,7 +1,6 @@
 import { handler, zilPay } from './lib';
 
 (function () {
-  (window as any).flutter_inappwebview = (window as any).flutter_inappwebview ?? {};
   if (!globalThis.window || !globalThis.document || (globalThis.window as any)['zilPay']) {
     console.warn('zilPay already exists or not in browser');
     return;

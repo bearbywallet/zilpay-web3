@@ -4,7 +4,7 @@ import { MTypeTabContent } from "./stream-keys";
 
 export class FlutterStream {
   public listen(cb: (payload: ReqBody) => void) {
-    if (window.flutter_inappwebview) {
+    if (window.webview_plus) {
       window.addEventListener('message', (event) => {
         const data = event.data;
         if (data) {
@@ -23,8 +23,8 @@ export class FlutterStream {
   }
 
   public send(data: ReqBody) {
-    if (typeof window !== 'undefined' && window.flutter_inappwebview?.callHandler) {
-      window.flutter_inappwebview.callHandler('ZilPayLegacy', JSON.stringify(data))
+    if (typeof window !== 'undefined' && window.webview_plus?.callHandler) {
+      window.webview_plus.callHandler('ZilPayLegacy', JSON.stringify(data))
         .catch(() => {
           if (window.ZilPayLegacy) {
             window.ZilPayLegacy.postMessage(JSON.stringify(data));
@@ -57,7 +57,7 @@ declare global {
     ZilPayLegacy?: {
       postMessage: (msg: string) => void;
     };
-    flutter_inappwebview?: {
+    webview_plus?: {
       callHandler: (handlerName: string, ...args: any[]) => Promise<any>;
     };
   }
